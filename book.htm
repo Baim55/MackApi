@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="src/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="bg-[#0d0e10] fixed left-0 right-0 z-50">
+      <nav class="container p-[20px] text-white">
+        <div class="md:hidden flex items-center justify-between">
+          <a href="">
+            <span class="dancing text-[32px]">Tastyo</span>
+          </a>
+          <div class="flex items-center justify-center gap-3">
+            <i
+              class="fa-solid fa-heart text-xl hover:text-[#ffbe33] duration-300"
+            ></i>
+            <div class="relative">
+              <i
+                onclick="openModalBasket()"
+                class="fa-solid fa-cart-shopping hover:text-[#ffbe33] duration-300 cursor-pointer text-xl"
+              ></i>
+              <span
+                id="countMobile"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full"
+              >
+                0
+              </span>
+            </div>
+            <i class="fa-solid fa-bars text-[24px]" onclick="menuOpen()"></i>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center justify-between">
+          <a href="">
+            <span class="dancing text-[32px]">Tastyo</span>
+          </a>
+          <ul class="flex items-center justify-center">
+            <li>
+              <a
+                href="index.htm"
+                class="nav-link py-[5px] px-[20px] uppercase hover:text-[#ffbe33] duration-300"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="admin.htm"
+                class="nav-link py-[5px] px-[20px] uppercase hover:text-[#ffbe33] duration-300"
+                >Admin</a
+              >
+            </li>
+            <li>
+              <a
+                href=""
+                class="nav-link py-[5px] px-[20px] uppercase hover:text-[#ffbe33] duration-300"
+                >User</a
+              >
+            </li>
+            <li>
+              <a
+                href="book.htm"
+                class="nav-link py-[5px] px-[20px] uppercase hover:text-[#ffbe33] duration-300"
+                >Book Table</a
+              >
+            </li>
+          </ul>
+          <div class="flex items-center justify-center gap-3">
+            <i
+              onclick="openModalWishlist()"
+              class="fa-solid fa-heart text-xl hover:text-[#ffbe33] duration-300"
+            ></i>
+            <div class="relative">
+              <i
+                onclick="openModalBasket()"
+                class="fa-solid fa-cart-shopping hover:text-[#ffbe33] duration-300 cursor-pointer text-xl"
+              ></i>
+              <span
+                id="count"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full"
+              >
+                0
+              </span>
+            </div>
+            <i
+              class="fa-solid fa-magnifying-glass text-xl hover:text-[#ffbe33] duration-300"
+            ></i>
+            <a
+              href=""
+              class="mx-[10px] bg-[#ffbe33] hover:bg-[#e69c00] duration-200 rounded-4xl py-[10px] px-[30px] flex items-center justify-center gap-2"
+              >Order Online</a
+            >
+          </div>
+        </div>
+        <div
+          id="menubar"
+          style="right: -100%"
+          class="mobilmenu-list transition-[right] duration-500 ease-in-out bg-white fixed top-0 right-0 h-[100%] w-[300px] z-999"
+        >
+          <div class="flex justify-end mt-5 mr-5">
+            <i
+              onclick="menuOpen()"
+              class="fa-solid fa-x text-black text-[27px] cursor-pointer"
+            ></i>
+          </div>
+          <ul class="flex flex-col justify-between text-black px-[20px]">
+            <li class="py-[10px] px-[15px] text-[14px]">
+              <a href="index.htm">Home</a>
+            </li>
+            <li class="py-[10px] px-[15px] text-[14px]">
+              <a href="admin.htm">Admin</a>
+            </li>
+            <li class="py-[10px] px-[15px] text-[14px]">
+              <a href="user.htm">User</a>
+            </li>
+            <li class="py-[10px] px-[15px] text-[14px]">
+              <a href="book.htm">Book Table</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <script src="src/script.js"></script>
+  </body>
+</html>

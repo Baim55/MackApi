@@ -1,4 +1,14 @@
-let product = document.getElementById("product");
+function menuOpen() {
+  let menubar = document.getElementById("menubar");
+
+  if (menubar.style.right == "-100%") {
+    menubar.style.right = "0";
+  } else {
+    menubar.style.right = "-100%";
+  }
+}
+
+let product = document.getElementById("product") || { innerHTML: "" };
 let count = document.getElementById("count");
 let countMobile = document.getElementById("countMobile");
 
@@ -9,13 +19,14 @@ function openModalBasket() {
     : (modalBasket.style.display = "none");
 }
 
-fetch("https://69b68ba2583f543fbd9df704.mockapi.io/f142/products")
-  .then((data) => data.json())
-  .then((data) => {
-    allProducts = data;
-    data
-      .map((item) => {
-        product.innerHTML += `
+function getAllData() {
+  fetch("https://69b68ba2583f543fbd9df704.mockapi.io/f142/products")
+    .then((data) => data.json())
+    .then((data) => {
+      allProducts = data;
+      data
+        .map((item) => {
+          product.innerHTML += `
        <div
                 id="${item.id}"
                 class="relative rounded-2xl overflow-hidden bg-[#222831]"
@@ -40,6 +51,7 @@ fetch("https://69b68ba2583f543fbd9df704.mockapi.io/f142/products")
                 <div class="p-[25px] text-white">
                   <h5 class="mb-[8px] text-[20px] font-bold">${item.name}</h5>
                   <p class="mb-[16px] text-[15px]">${item.category}</p>
+                  <p class="mb-[16px] text-[15px]">${item.description}</p>
 
                   <div class="flex items-center justify-between">
                     <h6 class='text-2xl font-bold'>$${item.price}</h6>
@@ -53,9 +65,51 @@ fetch("https://69b68ba2583f543fbd9df704.mockapi.io/f142/products")
                 </div>
               </div>
         `;
-      })
-      .join("");
-  });
+        })
+        .join("");
+    });
+}
+
+function addProduct() {
+  let name = document.getElementById("name");
+  let desc = document.getElementById("desc");
+  let price = document.getElementById("price");
+  let category = document.getElementById("category");
+  let image = document.getElementById("image");
+
+  const nameValue = name.value;
+  const descValue = desc.value;
+  const priceValue = price.value;
+  const categoryValue = category.value;
+  const imageValue = image.value;
+
+  const data = {
+    name: nameValue,
+    description: descValue,
+    price: priceValue,
+    category: categoryValue,
+    image: imageValue,
+  };
+
+  fetch("https://69b68ba2583f543fbd9df704.mockapi.io/f142/products", {
+    method: "post",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((res) => res.json())
+    .then(() => {
+      name.value = "";
+      desc.value = "";
+      price.value = "";
+      category.value = "";
+      image.value = "";
+
+      product.innerHTML = "";
+      getAllData();
+    });
+}
 
 let basket = [];
 let basketList = document.getElementById("basketList");
@@ -108,7 +162,7 @@ function showBasket() {
     `;
     })
     .join("");
-  price.innerHTML = `
+  priceTotal.innerHTML = `
       <li class="flex flex-wrap gap-4 text-sm py-3 font-bold text-blue-600">
       Total <span class="ml-auto">${total} $</span>
     </li>
@@ -142,3 +196,13 @@ function updateCount(index, action) {
   count.innerHTML = number;
   countMobile.innerHTML = number;
 }
+
+getAllData();
+
+let links = document.querySelectorAll(".nav-link");
+
+links.forEach((link) => {
+  if (link.href === window.location.href) {
+    link.classList.add("text-[#ffbe33]");
+  }
+});

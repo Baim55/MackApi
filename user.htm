@@ -22,7 +22,7 @@
     <title>Document</title>
   </head>
   <body>
-     <header class="bg-[#0d0e10] fixed left-0 right-0 z-50">
+    <header class="bg-[#0d0e10] fixed left-0 right-0 z-50">
       <nav class="container p-[20px] text-white">
         <div class="md:hidden flex items-center justify-between">
           <a href="">
@@ -136,77 +136,11 @@
         </div>
       </nav>
     </header>
-    <main class="pt-30 pb-1 isolate bg-gray-900">
-      <div id="error" class="p-4 w-[300px]"></div>
-      <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="mt-10 sm:mx-auto sm:w-full h-[435px] sm:max-w-sm">
-          <form class="space-y-6">
-            <div>
-              <label
-                for="name"
-                class="block text-sm/6 font-medium text-gray-100"
-                >Username</label
-              >
-              <div class="mt-2">
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  required
-                  autocomplete="name"
-                  class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                />
-              </div>
-            </div>
-
-            <div>
-              <div class="flex items-center justify-between">
-                <label
-                  for="password"
-                  class="block text-sm/6 font-medium text-gray-100"
-                  >Password</label
-                >
-                <div class="text-sm">
-                  <a
-                    href="#"
-                    class="font-semibold text-indigo-400 hover:text-indigo-300"
-                    >Forgot password?</a
-                  >
-                </div>
-              </div>
-              <div class="mt-2">
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  required
-                  autocomplete="current-password"
-                  class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                />
-              </div>
-            </div>
-
-            <div>
-              <button
-                onclick="login()"
-                type="button"
-                class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              >
-                Sign in
-              </button>
-            </div>
-          </form>
-
-          <p class="mt-10 text-center text-sm/6 text-gray-400">
-            Not a member?
-            <a
-              href="#"
-              class="font-semibold text-indigo-400 hover:text-indigo-300"
-              >Start a 14 day free trial</a
-            >
-          </p>
-        </div>
-      </div>
+    <main class="pt-30 pb-8 bg-gray-900">
+      <div
+        id="product"
+        class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-[12px] lg:px-0"
+      ></div>
 
       <div style="display: none" id="modalBasket">
         <div
@@ -254,6 +188,5 @@
       </div>
     </main>
     <script src="src/script.js"></script>
-    <script src="src/adminLogin.js"></script>
   </body>
 </html>

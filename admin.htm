@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="src/output.css" />
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+   <header class="bg-[#0d0e10] fixed left-0 right-0 z-50">
+      <nav class="container p-[20px] text-white">
+        <div class="md:hidden flex items-center justify-between">
+          <a href="">
+            <span class="dancing text-[32px]">Tastyo</span>
+          </a>
+          <div class="flex items-center justify-center gap-3">
+            <i
+              class="fa-solid fa-heart text-xl hover:text-[#ffbe33] duration-300"
+            ></i>
+            <div class="relative">
+              <i
+                onclick="openModalBasket()"
+                class="fa-solid fa-cart-shopping hover:text-[#ffbe33] duration-300 cursor-pointer text-xl"
+              ></i>
+              <span
+                id="countMobile"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full"
+              >
+                0
+              </span>
+            </div>
+            <i class="fa-solid fa-bars text-[24px]" onclick="menuOpen()"></i>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center justify-between">
+          <a href="">
+            <span class="dancing text-[32px]">Tastyo</span>
+          </a>
+          <ul class="flex items-center justify-center">
+            <li>
+              <a
+                href="index.htm"
+                class="nav-link py-[5px] px-[20px] uppercase hover:text-[#ffbe33] duration-300"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="admin.htm"
+                class="nav-link py-[5px] px-[20px] uppercase hover:text-[#ffbe33] duration-300"
+                >Admin</a
+              >
+            </li>
+            <li>
+              <a
+                href=""
+                class="nav-link py-[5px] px-[20px] uppercase hover:text-[#ffbe33] duration-300"
+                >User</a
+              >
+            </li>
+            <li>
+              <a
+                href="book.htm"
+                class="nav-link py-[5px] px-[20px] uppercase hover:text-[#ffbe33] duration-300"
+                >Book Table</a
+              >
+            </li>
+          </ul>
+          <div class="flex items-center justify-center gap-3">
+            <i
+              onclick="openModalWishlist()"
+              class="fa-solid fa-heart text-xl hover:text-[#ffbe33] duration-300"
+            ></i>
+            <div class="relative">
+              <i
+                onclick="openModalBasket()"
+                class="fa-solid fa-cart-shopping hover:text-[#ffbe33] duration-300 cursor-pointer text-xl"
+              ></i>
+              <span
+                id="count"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full"
+              >
+                0
+              </span>
+            </div>
+            <i
+              class="fa-solid fa-magnifying-glass text-xl hover:text-[#ffbe33] duration-300"
+            ></i>
+            <a
+              href=""
+              class="mx-[10px] bg-[#ffbe33] hover:bg-[#e69c00] duration-200 rounded-4xl py-[10px] px-[30px] flex items-center justify-center gap-2"
+              >Order Online</a
+            >
+          </div>
+        </div>
+        <div
+          id="menubar"
+          style="right: -100%"
+          class="mobilmenu-list transition-[right] duration-500 ease-in-out bg-white fixed top-0 right-0 h-[100%] w-[300px] z-999"
+        >
+          <div class="flex justify-end mt-5 mr-5">
+            <i
+              onclick="menuOpen()"
+              class="fa-solid fa-x text-black text-[27px] cursor-pointer"
+            ></i>
+          </div>
+          <ul class="flex flex-col justify-between text-black px-[20px]">
+            <li class="py-[10px] px-[15px] text-[14px]">
+              <a href="index.htm">Home</a>
+            </li>
+            <li class="py-[10px] px-[15px] text-[14px]">
+              <a href="admin.htm">Admin</a>
+            </li>
+            <li class="py-[10px] px-[15px] text-[14px]">
+              <a href="user.htm">User</a>
+            </li>
+            <li class="py-[10px] px-[15px] text-[14px]">
+              <a href="book.htm">Book Table</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="isolate bg-gray-900 px-6 py-12 sm:py-30 lg:px-8">
+      <div
+        aria-hidden="true"
+        class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+      >
+        <div
+          style="
+            clip-path: polygon(
+              74.1% 44.1%,
+              100% 61.6%,
+              97.5% 26.9%,
+              85.5% 0.1%,
+              80.7% 2%,
+              72.5% 32.5%,
+              60.2% 62.4%,
+              52.4% 68.1%,
+              47.5% 58.3%,
+              45.2% 34.5%,
+              27.5% 76.7%,
+              0.1% 64.9%,
+              17.9% 100%,
+              27.6% 76.8%,
+              76.1% 97.7%,
+              74.1% 44.1%
+            );
+          "
+          class="relative left-1/2 -z-10 aspect-1155/678 w-144.5 max-w-none -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-40rem)] sm:w-288.75"
+        ></div>
+      </div>
+      <div class="mx-auto max-w-2xl text-center">
+        <h2
+          class="text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl"
+        >
+          Contact sales
+        </h2>
+      </div>
+      <form class="mx-auto mt-16 max-w-xl sm:mt-10">
+        <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+          <div class="sm:col-span-2">
+            <label
+              for="first-name"
+              class="block text-sm/6 font-semibold text-white"
+              >Name</label
+            >
+            <div class="mt-2.5">
+              <input
+                id="name"
+                type="text"
+                name="first-name"
+                autocomplete="given-name"
+                class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <label
+              for="company"
+              class="block text-sm/6 font-semibold text-white"
+              >Category</label
+            >
+            <div class="mt-2.5">
+              <input
+                id="category"
+                type="text"
+                name="company"
+                autocomplete="organization"
+                class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <label for="desc" class="block text-sm/6 font-semibold text-white"
+              >Description</label
+            >
+            <div class="mt-2.5">
+              <input
+                id="desc"
+                name="desc"
+                class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <label for="price" class="block text-sm/6 font-semibold text-white"
+              >Price</label
+            >
+            <div class="mt-2.5">
+              <input
+                id="price"
+                name="price"
+                class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+              />
+            </div>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="image" class="block text-sm/6 font-semibold text-white"
+              >Image</label
+            >
+            <div class="mt-2.5">
+              <input
+                id="image"
+                type="text"
+                name="image"
+                autocomplete="organization"
+                class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="mt-10">
+          <button
+            onclick="addProduct()"
+            type="button"
+            class="block w-full rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
+</html>
