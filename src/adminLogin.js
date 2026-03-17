@@ -5,7 +5,7 @@ function login() {
   let admin = "admin";
   let pass = "1234";
   if (username.value == admin && password.value == pass) {
-    window.location.href = "Admin.htm";
+    window.location.href = "/admin.htm";
   } else {
     error.innerHTML += `  <div class="bg-red-100 text-red-800 p-4 rounded-lg" role="alert">
         <span class="font-semibold text-[15px] inline-block mr-4">Error!</span>
