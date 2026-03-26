@@ -12,12 +12,77 @@ let product = document.getElementById("product") || { innerHTML: "" };
 let count = document.getElementById("count");
 let countMobile = document.getElementById("countMobile");
 
+let categoryList = document.getElementById("categoryList");
+
+fetch("https://69b68ba2583f543fbd9df704.mockapi.io/f142/category")
+  .then((res) => res.json())
+  .then((cat) => {
+    cat.map((c) => {
+      categoryList.innerHTML += `<button onclick="filterProduct('${c.name}')" class="bg-amber-500 text-white px-4 py-1 rounded">${c.name}</button>`;
+    });
+  });
+
+function filterProduct(name) {
+  const result =
+    name === "all"
+      ? allProducts
+      : allProducts.filter((f) => f.category === name);
+  render(result);
+}
+
+function render(data) {
+  product.innerHTML = "";
+  data.map((item) => {
+    product.innerHTML += `
+      <div
+                id="${item.id}"
+                class="relative rounded-2xl overflow-hidden bg-[#222831]"
+              >
+                <button
+                  onclick="event.stopPropagation(); addWishlist(${item.id})"
+                  class="absolute top-3 right-3 z-10 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow hover:scale-110 transition"
+                >
+                  <i id="heart-${item.id}" class="fa-regular fa-heart text-red-500"></i>
+                </button>
+
+                <div
+                  class=" rounded-bl-3xl bg-[#f1f2f3] flex items-center justify-center hov"
+                >
+                  <img
+                    src="${item.image}"
+                    alt=""
+                    class="w-full h-[280px] object-cover object-center rounded-2xl transition duration-300 hover:scale-105"
+                  />
+                </div>
+
+                <div class="p-[25px] text-white">
+                  <h5 class="mb-[8px] text-[20px] font-bold">${item.name}</h5>
+                  <p class="mb-[16px] text-[15px]">${item.category}</p>
+                  <p class="mb-[16px] text-[15px]">${item.description}</p>
+
+                  <div class="flex items-center justify-between">
+                    <h6 class='text-2xl font-bold'>$${item.price}</h6>
+                    <a
+                      onclick="event.stopPropagation(); addBasket(${item.id})"
+                      class="w-[40px] h-[40px] bg-[#ffbe33] hover:bg-[#dd9700] duration-200 cursor-pointer flex items-center justify-center rounded-full"
+                    >
+                      <i class="fa-solid fa-cart-shopping "></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+    `;
+  });
+}
+
 function openModalBasket() {
   let modalBasket = document.getElementById("modalBasket");
   modalBasket.style.display === "none"
     ? (modalBasket.style.display = "block")
     : (modalBasket.style.display = "none");
 }
+
+let allProducts = [];
 
 function getAllData() {
   fetch("https://69b68ba2583f543fbd9df704.mockapi.io/f142/products")
